@@ -23,6 +23,7 @@ public class ShowCategoriesAction implements Action {
         String role = (String) session.getAttribute("role");
         if (!role.equals("Admin") || role.isEmpty()) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/login.jsp");
+            requestDispatcher.forward(request, response);
         } else {
             CategoryDAO categoryDAO = new CategoryDAO();
             List<Category> listOfCategories = categoryDAO.getAll(languageId);
@@ -30,6 +31,5 @@ public class ShowCategoriesAction implements Action {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/categories.jsp");
             requestDispatcher.forward(request, response);
         }
-
     }
 }

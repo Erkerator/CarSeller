@@ -76,7 +76,7 @@
         </div>
     </form>
     <hr/>
-    <form method="get">
+    <form method="get" action="/admin/correctCategory">
         <h4 class="text-center">Редактирование категории авто:</h4>
         <div class="row justify-content-center">
             <div class="col-6">
@@ -96,7 +96,7 @@
         </div>
     </form>
     <hr/>
-    <form method="get">
+    <form method="get" action="/admin/deleteCategory">
         <h4 class="text-center">Удаление категории авто:</h4>
         <div class="row justify-content-center">
             <div class="col-6">

@@ -16,5 +16,15 @@ public final class CarsellerConstants {
     public static final String SAVE_CAR_TO_DB = "/saveCar";
     public static final String ADMIN_PAGE = "/admin";
     public static final String CATEGORIES_ADMIN_PAGE = "/admin/categories";
+    public static final String MODELS_ADMIN_PAGE = "/admin/models";
+    public static final String TRANSMISSIONS_ADMIN_PAGE = "/admin/transmissions";
     public static final String ADD_CATEGORY = "/admin/addCategory";
+    public static final String CORRECT_CATEGORY = "/admin/correctCategory";
+    public static final String DELETE_CATEGORY = "/admin/deleteCategory";
+    public static final String ADD_MODEL = "/admin/addModel";
+    public static final String CORRECT_MODEL = "/admin/correctModel";
+    public static final String DELETE_MODEL = "/admin/deleteModel";
+    public static final String ADD_TRANSMISSION = "/admin/addTransmission";
+    public static final String CORRECT_TRANSMISSION = "/admin/correctTransmission";
+    public static final String DELETE_TRANSMISSION = "/admin/deleteTransmission";
 }

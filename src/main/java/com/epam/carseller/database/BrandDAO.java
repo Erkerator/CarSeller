@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrandDAO {
-    public static final String SELECT_ALL_BRANDS = "SELECT * FROM Brand WHERE language_id = ?";
+    public static final String SELECT_ALL_BRANDS = "SELECT * FROM Brand";
     public static final String SELECT_BRAND_BY_ID = "SELECT * FROM Brand WHERE brand_id = ?";
     public static final String UPDATE_BRAND = "UPDATE Brand SET brand = ? WHERE brand_id = ?";
     public static final String DELETE_BRAND = "DELETE FROM Brand WHERE brand_id = ?";
     public static final String INSERT_BRAND = "INSERT INTO Brand (brand) VALUES (?)";
 
-    public List<Brand> getAll(int languageId) {
+    public List<Brand> getAll() {
         List<Brand> list = new ArrayList<>();
         ConnectionPool pool = null;
         Connection connection = null;
@@ -25,7 +25,6 @@ public class BrandDAO {
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BRANDS)) {
-                preparedStatement.setInt(1, languageId);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Brand brand = new Brand();

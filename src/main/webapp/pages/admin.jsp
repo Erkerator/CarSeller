@@ -67,10 +67,10 @@
             <a href="/admin/categories" class="btn btn-info btn-block" role="button">Редактировать раздел: "Категории авто"</a>
         </div>
         <div class="row" style="margin-top: 10px">
-            <a href="#" class="btn btn-info btn-block" role="button">Редактировать раздел: "Модель авто"</a>
+            <a href="/admin/models" class="btn btn-info btn-block" role="button">Редактировать раздел: "Модель авто"</a>
         </div>
         <div class="row" style="margin-top: 10px">
-            <a href="#" class="btn btn-info btn-block" role="button">Редактировать раздел: "Трансмиссию авто"</a>
+            <a href="/admin/transmissions" class="btn btn-info btn-block" role="button">Редактировать раздел: "Трансмиссию авто"</a>
         </div>
         <div class="row" style="margin-top: 10px">
             <a href="#" class="btn btn-info btn-block" role="button">Редактировать раздел: "Состояние авто"</a>
@@ -78,12 +78,9 @@
         <div class="row" style="margin-top: 10px">
             <a href="#" class="btn btn-info btn-block" role="button">Добавить администратора</a>
         </div>
-        <div class="row" style="margin-top: 10px">
-            <a href="#" class="btn btn-info btn-block" role="button">Добавить язык</a>
-        </div>
     </div>
 
-    <footer class="container-fluid text-center bg-dark text-light" >
+    <footer class="container-fluid text-center bg-dark text-light">
         <h5><fmt:message key="label.footer"/></h5>
     </footer>
 

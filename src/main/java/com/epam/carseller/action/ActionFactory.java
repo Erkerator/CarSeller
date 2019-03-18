@@ -29,7 +29,16 @@ public class ActionFactory {
         ACTION_MAP.put(SAVE_CAR_TO_DB, new SaveCarAction());
         ACTION_MAP.put(ADMIN_PAGE, new AdministrateAction());
         ACTION_MAP.put(CATEGORIES_ADMIN_PAGE, new ShowCategoriesAction());
+        ACTION_MAP.put(MODELS_ADMIN_PAGE, new ShowModelsAction());
+        ACTION_MAP.put(TRANSMISSIONS_ADMIN_PAGE, new ShowTransmissionsAction());
         ACTION_MAP.put(ADD_CATEGORY, new AddCategoryAction());
+        ACTION_MAP.put(CORRECT_CATEGORY, new CorrectCategoryAction());
+        ACTION_MAP.put(DELETE_CATEGORY, new DeleteCategoryAction());
+        ACTION_MAP.put(ADD_MODEL, new AddModelAction());
+        ACTION_MAP.put(DELETE_MODEL, new DeleteModelAction());
+        ACTION_MAP.put(ADD_TRANSMISSION, new AddTransmissionAction());
+        ACTION_MAP.put(CORRECT_TRANSMISSION, new CorrectTransmissionAction());
+        ACTION_MAP.put(DELETE_TRANSMISSION, new DeleteTransmissionAction());
     }
 
     public static ActionFactory getInstance() {
