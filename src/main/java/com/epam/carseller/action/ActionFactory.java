@@ -43,6 +43,8 @@ public class ActionFactory {
         ACTION_MAP.put(ADD_STATE, new AddStateAction());
         ACTION_MAP.put(CORRECT_STATE, new CorrectStateAction());
         ACTION_MAP.put(DELETE_STATE, new DeleteStateAction());
+        ACTION_MAP.put(ADD_ADMIN_PAGE, new AdminRegistrationPageAction());
+        ACTION_MAP.put(ADMIN_REGISTRATION, new AdminRegistrationAction());
     }
 
     public static ActionFactory getInstance() {

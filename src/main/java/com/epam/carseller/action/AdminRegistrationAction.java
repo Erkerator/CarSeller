@@ -10,12 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.epam.carseller.util.CarsellerConstants.LOGIN_PAGE;
-
-public class UserRegistrationAction implements Action {
-
+public class AdminRegistrationAction implements Action {
+    @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String DEFAULT_USER_ROLE = "User";
+        String DEFAULT_ADMIN_ROLE = "Admin";
         UserDAO userDAO = new UserDAO();
         User user = new User();
         String username = request.getParameter("username");
@@ -23,21 +21,19 @@ public class UserRegistrationAction implements Action {
         String passwordRepeat = request.getParameter("passwordRepeat");
         String firstName = request.getParameter("firstName");
         String secondName = request.getParameter("secondName");
-        String phoneNumber = request.getParameter("phoneNumber");
         //userDAO.getUserByUsername(username);
-        if (!username.isEmpty() && !password.isEmpty() && password.equals(passwordRepeat) && !firstName.isEmpty() && !phoneNumber.isEmpty()) {
+        if (!username.isEmpty() && !password.isEmpty() && password.equals(passwordRepeat) && !firstName.isEmpty()) {
             user.setUsername(username);
             user.setPassword(DigestUtils.md5Hex(password));
             user.setFirstName(firstName);
             user.setSecondName(secondName);
-            user.setPhoneNumber(phoneNumber);
-            user.setRole(DEFAULT_USER_ROLE);
+            user.setRole(DEFAULT_ADMIN_ROLE);
             userDAO.insert(user);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
             requestDispatcher.forward(request,response);
         } else {
             request.setAttribute("incorrectData", 1);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/registration.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/adminRegistration.jsp");
             requestDispatcher.forward(request, response);
         }
     }
