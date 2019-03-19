@@ -32,10 +32,13 @@
                                 <c:choose>
                                     <c:when test="${sessionScope.role == 'Admin'}">
                                         <a class="dropdown-item" href="/admin">Админ панель</a>
+                                        <a class="dropdown-item" href="/logout">выйти</a>
                                     </c:when>
+                                    <c:otherwise>
+                                        <a class="dropdown-item" href="/account">личный кабинет</a>
+                                        <a class="dropdown-item" href="/logout">выйти</a>
+                                    </c:otherwise>
                                 </c:choose>
-                                <a class="dropdown-item" href="/account">личный кабинет</a>
-                                <a class="dropdown-item" href="/logout">выйти</a>
                             </div>
                         </li>
                     </c:when>
@@ -73,7 +76,7 @@
             <a href="/admin/transmissions" class="btn btn-info btn-block" role="button">Редактировать раздел: "Трансмиссию авто"</a>
         </div>
         <div class="row" style="margin-top: 10px">
-            <a href="#" class="btn btn-info btn-block" role="button">Редактировать раздел: "Состояние авто"</a>
+            <a href="/admin/states" class="btn btn-info btn-block" role="button">Редактировать раздел: "Состояние авто"</a>
         </div>
         <div class="row" style="margin-top: 10px">
             <a href="#" class="btn btn-info btn-block" role="button">Добавить администратора</a>

@@ -18,6 +18,7 @@ public final class CarsellerConstants {
     public static final String CATEGORIES_ADMIN_PAGE = "/admin/categories";
     public static final String MODELS_ADMIN_PAGE = "/admin/models";
     public static final String TRANSMISSIONS_ADMIN_PAGE = "/admin/transmissions";
+    public static final String STATE_ADMIN_PAGE = "/admin/states";
     public static final String ADD_CATEGORY = "/admin/addCategory";
     public static final String CORRECT_CATEGORY = "/admin/correctCategory";
     public static final String DELETE_CATEGORY = "/admin/deleteCategory";
@@ -27,4 +28,7 @@ public final class CarsellerConstants {
     public static final String ADD_TRANSMISSION = "/admin/addTransmission";
     public static final String CORRECT_TRANSMISSION = "/admin/correctTransmission";
     public static final String DELETE_TRANSMISSION = "/admin/deleteTransmission";
+    public static final String ADD_STATE = "/admin/addState";
+    public static final String CORRECT_STATE = "/admin/correctState";
+    public static final String DELETE_STATE = "/admin/deleteState";
 }

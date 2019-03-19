@@ -32,8 +32,16 @@
                                 ${sessionScope.username}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/account">личный кабинет</a>
-                            <a class="dropdown-item" href="/logout">выйти</a>
+                            <c:choose>
+                                <c:when test="${sessionScope.role == 'Admin'}">
+                                    <a class="dropdown-item" href="/admin">Админ панель</a>
+                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="dropdown-item" href="/account">личный кабинет</a>
+                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </li>
                 </c:when>

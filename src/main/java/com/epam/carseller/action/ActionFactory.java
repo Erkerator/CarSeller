@@ -31,6 +31,7 @@ public class ActionFactory {
         ACTION_MAP.put(CATEGORIES_ADMIN_PAGE, new ShowCategoriesAction());
         ACTION_MAP.put(MODELS_ADMIN_PAGE, new ShowModelsAction());
         ACTION_MAP.put(TRANSMISSIONS_ADMIN_PAGE, new ShowTransmissionsAction());
+        ACTION_MAP.put(STATE_ADMIN_PAGE, new ShowStatesAction());
         ACTION_MAP.put(ADD_CATEGORY, new AddCategoryAction());
         ACTION_MAP.put(CORRECT_CATEGORY, new CorrectCategoryAction());
         ACTION_MAP.put(DELETE_CATEGORY, new DeleteCategoryAction());
@@ -39,6 +40,9 @@ public class ActionFactory {
         ACTION_MAP.put(ADD_TRANSMISSION, new AddTransmissionAction());
         ACTION_MAP.put(CORRECT_TRANSMISSION, new CorrectTransmissionAction());
         ACTION_MAP.put(DELETE_TRANSMISSION, new DeleteTransmissionAction());
+        ACTION_MAP.put(ADD_STATE, new AddStateAction());
+        ACTION_MAP.put(CORRECT_STATE, new CorrectStateAction());
+        ACTION_MAP.put(DELETE_STATE, new DeleteStateAction());
     }
 
     public static ActionFactory getInstance() {

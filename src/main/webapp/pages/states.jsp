@@ -1,16 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: erkerator
-  Date: 15.02.19
-  Time: 12:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${sessionScope.lang}"/>
 <fmt:setBundle basename="messages"/>
-<jsp:useBean id="now" class="java.util.Date" />
 <html>
 <head>
     <title>Welcome page</title>
@@ -65,74 +57,58 @@
     </div>
 </nav>
 
-    <form action="/saveCar" method="post" class="registerForm" enctype="multipart/form-data">
-        <h3 class="text-center">Add car</h3>
-        <div class="form-group">
-            <label><fmt:message key="label.model"/></label>
-            <select name="Model" class="form-control">
-                <option disabled selected value><fmt:message key="label.selectOption"/></option>
-                <c:forEach var="model" items="${modelsList}">
-                    <option value="${model.modelId}">${model.model}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div class="form-group">
-            <label><fmt:message key="label.transmission"/></label>
-            <select name="Transmission" class="form-control">
-                <option disabled selected value><fmt:message key="label.selectOption"/></option>
-                <c:forEach var="transmission" items="${transmissionsList}">
-                    <option value="${transmission.transmissionId}">${transmission.transmission}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div class="form-group">
-            <label><fmt:message key="label.category"/></label>
-            <select name="Category" class="form-control">
-                <option disabled selected value><fmt:message key="label.selectOption"/></option>
-                <c:forEach var="category" items="${categoriesList}">
-                    <option value="${category.categoryId}">${category.category}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div class="form-group">
-            <label><fmt:message key="label.state"/></label>
-            <select name="State" class="form-control">
-                <option disabled selected value><fmt:message key="label.selectOption"/></option>
-                <c:forEach var="state" items="${statesList}">
-                    <option value="${state.stateId}">${state.state}</option>
-                </c:forEach>
-            </select>
-        </div>
+<h1 class="text-center">Раздел "Состояние авто"</h1>
 
-        <div class="form-group">
-            <label><fmt:message key="label.dateOfProduce"/></label>
-            <select name="YearOfProduce" class="form-control">
-                <option disabled selected value><fmt:message key="label.selectOption"/></option>
-                <fmt:formatDate var="year" value="${now}" pattern="yyyy"/>
-                <c:forEach var="yearOfProduce" begin="1970" end="${year}" varStatus="loop">
-                    <option value="${yearOfProduce}">${yearOfProduce}</option>
-                </c:forEach>
-            </select>
+<form method="get" action="/admin/addState">
+    <h4 class="text-center">Добавление состояния авто:</h4>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Введите состояние авто:</label>
+                <input type="text" name="newState" placeholder="состояние авто" class="form-control">
+            </div>
+            <input type="submit" value="Добавить" class="btn btn-success">
         </div>
-
-        <div class="form-group">
-            <label><fmt:message key="label.engineVolume"/></label>
-            <select name="EngineVolume" class="form-control">
-                <option disabled selected value><fmt:message key="label.selectOption"/></option>
-                <c:forEach var="engineVolume" begin="1" end="50" step="1">
-                    <option value="${engineVolume/10}">${engineVolume/10}</option>
-                </c:forEach>
-            </select>
+    </div>
+</form>
+<hr/>
+<form method="get" action="/admin/correctState">
+    <h4 class="text-center">Редактирование состояния авто:</h4>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Выберите состояние авто:</label>
+                <select name="stateToUpdate" class="form-control" style="margin-top: 10px">
+                    <option disabled selected value><fmt:message key="label.selectOption"/></option>
+                    <c:forEach var="state" items="${states}">
+                        <option value="${state.stateId}">${state.state}</option>
+                    </c:forEach>
+                </select>
+                <hr/>
+                <input type="text" name="changedValue" placeholder="введите изменение" class="form-control" required>
+            </div>
+            <input type="submit" value="Редактировать" class="btn btn-info">
         </div>
-
-        <div class="form-group">
-            <label>Photo</label>
-            <input type="file" name="photo" class="form-control-file">
+    </div>
+</form>
+<hr/>
+<form method="get" action="/admin/deleteState">
+    <h4 class="text-center">Удаление состояния авто:</h4>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Выберите состояние авто:</label>
+                <select name="stateToDelete" class="form-control">
+                    <option disabled selected value><fmt:message key="label.selectOption"/></option>
+                    <c:forEach var="state" items="${states}">
+                        <option value="${state.stateId}">${state.state}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <input type="submit" value="Удалить" class="btn btn-danger">
         </div>
-        <div class="text-center">
-            <input type="submit" class="btn btn-warning w-100" value="<fmt:message key="label.addCar"/>">
-        </div>
-    </form>
+    </div>
+</form>
 
 <footer class="container-fluid text-center bg-dark text-light" >
     <h5><fmt:message key="label.footer"/></h5>
@@ -142,6 +118,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
 </body>
 </html>
