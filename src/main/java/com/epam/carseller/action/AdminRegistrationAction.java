@@ -21,7 +21,6 @@ public class AdminRegistrationAction implements Action {
         String passwordRepeat = request.getParameter("passwordRepeat");
         String firstName = request.getParameter("firstName");
         String secondName = request.getParameter("secondName");
-        //userDAO.getUserByUsername(username);
         if (!username.isEmpty() && !password.isEmpty() && password.equals(passwordRepeat) && !firstName.isEmpty()) {
             user.setUsername(username);
             user.setPassword(DigestUtils.md5Hex(password));

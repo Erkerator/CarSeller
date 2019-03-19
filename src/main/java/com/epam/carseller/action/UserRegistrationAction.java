@@ -24,7 +24,6 @@ public class UserRegistrationAction implements Action {
         String firstName = request.getParameter("firstName");
         String secondName = request.getParameter("secondName");
         String phoneNumber = request.getParameter("phoneNumber");
-        //userDAO.getUserByUsername(username);
         if (!username.isEmpty() && !password.isEmpty() && password.equals(passwordRepeat) && !firstName.isEmpty() && !phoneNumber.isEmpty()) {
             user.setUsername(username);
             user.setPassword(DigestUtils.md5Hex(password));
