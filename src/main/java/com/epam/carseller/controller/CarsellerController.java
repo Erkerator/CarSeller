@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class CarsellerController extends HttpServlet {
 
-    Logger logger = Logger.getLogger(CarsellerController.class);
+    final static Logger logger = Logger.getLogger(CarsellerController.class);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

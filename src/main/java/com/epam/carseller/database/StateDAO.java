@@ -1,6 +1,7 @@
 package com.epam.carseller.database;
 
 import com.epam.carseller.entity.State;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StateDAO {
+    final static Logger logger = Logger.getLogger(StateDAO.class);
     public static final String SELECT_ALL_STATES = "SELECT * FROM State WHERE language_id = ?";
     public static final String SELECT_STATE_BY_ID = "SELECT * FROM State WHERE state_id = ?";
     public static final String UPDATE_STATE = "UPDATE State SET language_id = ?, state = ? WHERE state_id = ?";
@@ -21,7 +23,6 @@ public class StateDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_STATES)){
@@ -37,7 +38,7 @@ public class StateDAO {
                pool.returnConnection(connection);
             }
         }catch (SQLException e) {
-            //
+            logger.error(e);
         }
         return list;
     }
@@ -47,7 +48,6 @@ public class StateDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_STATE_BY_ID)){
@@ -61,7 +61,7 @@ public class StateDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return state;
     }
@@ -70,7 +70,6 @@ public class StateDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_STATE)) {
@@ -81,7 +80,7 @@ public class StateDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -89,7 +88,6 @@ public class StateDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection= pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_STATE)){
@@ -98,7 +96,7 @@ public class StateDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -106,7 +104,6 @@ public class StateDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_STATE)){
@@ -116,7 +113,7 @@ public class StateDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 }

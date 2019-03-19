@@ -1,6 +1,7 @@
 package com.epam.carseller.database;
 
 import com.epam.carseller.entity.Model;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelDAO {
+    final static Logger logger = Logger.getLogger(ModelDAO.class);
     public static final String SELECT_ALL_MODELS = "SELECT * FROM Model";
     public static final String SELECT_MODEL_BY_ID = "SELECT * FROM Model WHERE model_id = ?";
     public static final String UPDATE_MODEL = "UPDATE Model SET brand_id = ?, model = ? WHERE model_id = ?";
@@ -21,7 +23,6 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_MODELS)) {
@@ -36,7 +37,7 @@ public class ModelDAO {
                 pool.returnConnection(connection);
             }
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return list;
     }
@@ -46,7 +47,6 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MODEL_BY_ID)){
@@ -60,7 +60,7 @@ public class ModelDAO {
                 pool.returnConnection(connection);
             }
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return model;
     }
@@ -69,7 +69,6 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MODEL)){
@@ -80,7 +79,7 @@ public class ModelDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -88,7 +87,6 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_MODEL)) {
@@ -97,7 +95,7 @@ public class ModelDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -105,7 +103,6 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MODEL)) {
@@ -115,7 +112,7 @@ public class ModelDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 }

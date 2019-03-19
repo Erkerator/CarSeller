@@ -1,6 +1,7 @@
 package com.epam.carseller.database;
 
 import com.epam.carseller.entity.Category;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDAO {
+    final static Logger logger = Logger.getLogger(CategoryDAO.class);
     public static final String SELECT_ALL_CATEGORIES = "SELECT * FROM Category WHERE language_id = ?";
     public static final String SELECT_CATEGORY_BY_ID = "SELECT * FROM Category WHERE category_id = ?";
     public static final String UPDATE_CATEGORY = "UPDATE Category SET language_id = ?, category = ? WHERE category_id = ?";
@@ -21,7 +23,6 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CATEGORIES)){
@@ -37,7 +38,7 @@ public class CategoryDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return list;
     }
@@ -47,7 +48,6 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CATEGORY_BY_ID)) {
@@ -61,7 +61,7 @@ public class CategoryDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return category;
     }
@@ -70,7 +70,6 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY)){
@@ -81,7 +80,7 @@ public class CategoryDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -89,7 +88,6 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY)){
@@ -98,7 +96,7 @@ public class CategoryDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -106,7 +104,6 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CATEGORY)){
@@ -116,7 +113,7 @@ public class CategoryDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 

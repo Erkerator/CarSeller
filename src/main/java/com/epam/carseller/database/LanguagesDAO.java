@@ -1,6 +1,7 @@
 package com.epam.carseller.database;
 
 import com.epam.carseller.entity.Languages;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LanguagesDAO {
-
+    final static Logger logger = Logger.getLogger(LanguagesDAO.class);
     public static final String SELECT_ALL_LANGUAGES = "SELECT * FROM Languages";
     public static final String SELECT_LANGUAGE_BY_ID = "SELECT * FROM Languages WHERE language_id = ?";
     public static final String SELECT_LANGUAGE_ID_BY_LOCALE = "SELECT language_id FROM Languages WHERE locale = ?";
@@ -23,7 +24,6 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_LANGUAGES)){
@@ -37,7 +37,7 @@ public class LanguagesDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            // log it
+            logger.error(e);
         }
         return list;
     }
@@ -47,7 +47,6 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LANGUAGE_BY_ID)) {
@@ -60,7 +59,7 @@ public class LanguagesDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return languages;
     }
@@ -70,7 +69,6 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LANGUAGE_ID_BY_LOCALE)){
@@ -82,7 +80,7 @@ public class LanguagesDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return language_id;
     }
@@ -91,7 +89,6 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_LANGUAGE)) {
@@ -101,7 +98,7 @@ public class LanguagesDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -109,7 +106,6 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_LANGUAGE)) {
@@ -118,7 +114,7 @@ public class LanguagesDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -126,7 +122,6 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_LANGUAGE)){
@@ -135,7 +130,7 @@ public class LanguagesDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 }

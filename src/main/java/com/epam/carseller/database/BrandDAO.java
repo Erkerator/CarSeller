@@ -1,6 +1,7 @@
 package com.epam.carseller.database;
 
 import com.epam.carseller.entity.Brand;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrandDAO {
+    final static Logger logger = Logger.getLogger(BrandDAO.class);
     public static final String SELECT_ALL_BRANDS = "SELECT * FROM Brand";
     public static final String SELECT_BRAND_BY_ID = "SELECT * FROM Brand WHERE brand_id = ?";
     public static final String UPDATE_BRAND = "UPDATE Brand SET brand = ? WHERE brand_id = ?";
@@ -21,7 +23,6 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BRANDS)) {
@@ -36,7 +37,7 @@ public class BrandDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return list;
     }
@@ -45,9 +46,7 @@ public class BrandDAO {
         Brand brand = new Brand();
         ConnectionPool pool = null;
         Connection connection = null;
-
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BRAND_BY_ID)) {
@@ -60,7 +59,7 @@ public class BrandDAO {
                 pool.returnConnection(connection);
             }
         } catch (SQLException e) {
-            //logger
+            logger.error(e);
         }
         return brand;
     }
@@ -69,7 +68,6 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_BRAND)) {
@@ -79,7 +77,7 @@ public class BrandDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -87,7 +85,6 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BRAND)) {
@@ -96,7 +93,7 @@ public class BrandDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -104,7 +101,6 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_BRAND)){
@@ -113,7 +109,7 @@ public class BrandDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.epam.carseller.database;
 
 import com.epam.carseller.entity.User;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
+    final static Logger logger = Logger.getLogger(UserDAO.class);
+
     public static final String SELECT_ALL_USER = "SELECT * FROM User";
     public static final String SELECT_USER_BY_USERNAME = "SELECT * FROM User WHERE username = ?";
     public static final String UPDATE_USER = "UPDATE User SET username = ?, password = ?, first_name = ?, second_name = ?, phone_number = ?, role = ? WHERE user_id = ?";
@@ -21,7 +24,6 @@ public class UserDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER)){
@@ -40,7 +42,7 @@ public class UserDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return list;
     }
@@ -50,7 +52,6 @@ public class UserDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_USERNAME)) {
@@ -68,7 +69,7 @@ public class UserDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return user;
     }
@@ -77,7 +78,6 @@ public class UserDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
@@ -92,7 +92,7 @@ public class UserDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -100,7 +100,6 @@ public class UserDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)){
@@ -109,7 +108,7 @@ public class UserDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -117,7 +116,6 @@ public class UserDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
@@ -131,7 +129,7 @@ public class UserDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 }

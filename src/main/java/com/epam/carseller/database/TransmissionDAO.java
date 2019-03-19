@@ -2,6 +2,7 @@ package com.epam.carseller.database;
 
 import com.epam.carseller.entity.Category;
 import com.epam.carseller.entity.Transmission;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransmissionDAO {
+    final static Logger logger = Logger.getLogger(TransmissionDAO.class);
     public static final String SELECT_ALL_TRANSMISSION = "SELECT * FROM Transmission WHERE language_id = ?";
     public static final String SELECT_TRANSMISSION_BY_ID = "SELECT * FROM Transmission WHERE transmission_id = ?";
     public static final String UPDATE_TRANSMISSION = "UPDATE Transmission SET language_id = ?, transmission = ? WHERE transmission_id = ?";
@@ -22,7 +24,6 @@ public class TransmissionDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TRANSMISSION)){
@@ -38,7 +39,7 @@ public class TransmissionDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return list;
     }
@@ -48,7 +49,6 @@ public class TransmissionDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TRANSMISSION_BY_ID)) {
@@ -62,7 +62,7 @@ public class TransmissionDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return  transmission;
     }
@@ -71,7 +71,6 @@ public class TransmissionDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TRANSMISSION)) {
@@ -82,7 +81,7 @@ public class TransmissionDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -90,7 +89,6 @@ public class TransmissionDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TRANSMISSION)){
@@ -99,7 +97,7 @@ public class TransmissionDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -107,7 +105,6 @@ public class TransmissionDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TRANSMISSION)) {
@@ -117,7 +114,7 @@ public class TransmissionDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 }

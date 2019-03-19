@@ -1,5 +1,7 @@
 package com.epam.carseller.database;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,7 +10,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class ConnectionPool {
-
+    final static Logger logger = Logger.getLogger(ConnectionPool.class);
     public static final String PROPERTIES_FILE = "database";
     private static ConnectionPool instance;
     private BlockingQueue<Connection> connectionQueue;
@@ -49,7 +51,7 @@ public class ConnectionPool {
         try {
             connection = connectionQueue.take();
         } catch (InterruptedException e) {
-            //log it;
+            logger.error(e);
         }
         return connection;
     }
@@ -59,7 +61,7 @@ public class ConnectionPool {
             try {
                 connectionQueue.put(connection);
             } catch (InterruptedException e) {
-                //log it
+                logger.error(e);
             }
         }
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarDAO {
-    Logger logger = Logger.getLogger(CarDAO.class);
+    final static Logger logger = Logger.getLogger(CarDAO.class);
 
     public static final String SELECT_ALL_CAR = "SELECT * FROM Car WHERE language_id = ?";
     public static final String SELECT_CAR_BY_ID = "SELECT Car.car_id, Model.model, Transmission.transmission, Category.category, State.state, Car.year_of_produce, Car.date_of_creation, Car.engine_volume, Car.language_id, Car.photo, User.username FROM Car INNER JOIN Model ON Car.model_id = Model.model_id INNER JOIN Transmission ON Car.transmission_id = Transmission.transmission_id INNER JOIN Category ON Car.category_id = Category.category_id INNER JOIN State ON Car.state_id = State.state_id INNER JOIN User ON Car.user_id = User.user_id WHERE Car.car_id = ?";
@@ -25,7 +25,6 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CAR)){
@@ -49,7 +48,7 @@ public class CarDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return list;
     }
@@ -59,7 +58,6 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CARS_BY_USERS_ID)) {
@@ -83,7 +81,7 @@ public class CarDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return list;
     }
@@ -93,7 +91,6 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CAR_BY_ID)){
@@ -115,7 +112,7 @@ public class CarDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return car;
     }
@@ -125,7 +122,6 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CARS_BY_PARAMETERS)){
@@ -156,7 +152,7 @@ public class CarDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
         return list;
     }
@@ -165,7 +161,6 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CAR)){
@@ -184,7 +179,7 @@ public class CarDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -192,7 +187,6 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CAR)){
@@ -201,7 +195,7 @@ public class CarDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            //log it
+            logger.error(e);
         }
     }
 
@@ -209,7 +203,6 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
-            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CAR)) {
@@ -227,7 +220,7 @@ public class CarDAO {
             }
             pool.returnConnection(connection);
         } catch (SQLException e) {
-            logger.info("Car inserting error: " + e);
+            logger.error(e);
         }
     }
 }
