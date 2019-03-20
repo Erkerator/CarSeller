@@ -33,4 +33,6 @@ public final class CarsellerConstants {
     public static final String DELETE_STATE = "/admin/deleteState";
     public static final String ADD_ADMIN_PAGE = "/admin/registrationPage";
     public static final String ADMIN_REGISTRATION = "/admin/registerAdmin";
+    public static final String CHECK_USERNAME = "/checkUsername";
+    public static final String GET_MODELS = "/getModels";
 }

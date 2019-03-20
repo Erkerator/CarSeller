@@ -25,6 +25,7 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CAR)){
@@ -58,6 +59,7 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CARS_BY_USERS_ID)) {
@@ -91,6 +93,7 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CAR_BY_ID)){
@@ -122,6 +125,7 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CARS_BY_PARAMETERS)){
@@ -161,6 +165,7 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CAR)){
@@ -187,6 +192,7 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CAR)){
@@ -203,6 +209,7 @@ public class CarDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CAR)) {

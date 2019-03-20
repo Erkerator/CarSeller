@@ -24,6 +24,7 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_LANGUAGES)){
@@ -47,6 +48,7 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LANGUAGE_BY_ID)) {
@@ -69,6 +71,7 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_LANGUAGE_ID_BY_LOCALE)){
@@ -89,6 +92,7 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_LANGUAGE)) {
@@ -106,6 +110,7 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_LANGUAGE)) {
@@ -122,6 +127,7 @@ public class LanguagesDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_LANGUAGE)){

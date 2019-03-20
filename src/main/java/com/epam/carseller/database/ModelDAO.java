@@ -23,6 +23,7 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_MODELS)) {
@@ -47,6 +48,7 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_MODEL_BY_ID)){
@@ -69,6 +71,7 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_MODEL)){
@@ -87,6 +90,7 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_MODEL)) {
@@ -103,6 +107,7 @@ public class ModelDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_MODEL)) {

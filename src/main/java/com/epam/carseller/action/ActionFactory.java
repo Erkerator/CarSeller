@@ -36,6 +36,7 @@ public class ActionFactory {
         ACTION_MAP.put(CORRECT_CATEGORY, new CorrectCategoryAction());
         ACTION_MAP.put(DELETE_CATEGORY, new DeleteCategoryAction());
         ACTION_MAP.put(ADD_MODEL, new AddModelAction());
+        ACTION_MAP.put(CORRECT_MODEL, new CorrectModelAction());
         ACTION_MAP.put(DELETE_MODEL, new DeleteModelAction());
         ACTION_MAP.put(ADD_TRANSMISSION, new AddTransmissionAction());
         ACTION_MAP.put(CORRECT_TRANSMISSION, new CorrectTransmissionAction());
@@ -45,6 +46,8 @@ public class ActionFactory {
         ACTION_MAP.put(DELETE_STATE, new DeleteStateAction());
         ACTION_MAP.put(ADD_ADMIN_PAGE, new AdminRegistrationPageAction());
         ACTION_MAP.put(ADMIN_REGISTRATION, new AdminRegistrationAction());
+        ACTION_MAP.put(CHECK_USERNAME, new CheckUsernameAction());
+        ACTION_MAP.put(GET_MODELS, new GetModelsAction());
     }
 
     public static ActionFactory getInstance() {

@@ -23,6 +23,7 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BRANDS)) {
@@ -47,6 +48,7 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BRAND_BY_ID)) {
@@ -68,6 +70,7 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_BRAND)) {
@@ -85,6 +88,7 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BRAND)) {
@@ -101,6 +105,7 @@ public class BrandDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_BRAND)){

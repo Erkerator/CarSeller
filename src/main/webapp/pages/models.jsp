@@ -14,6 +14,7 @@
 <head>
     <title>Welcome page</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
 </head>
@@ -87,18 +88,21 @@
     </div>
 </form>
 <hr/>
-<form method="get">
+<form method="get" action="/admin/correctModel">
     <h4 class="text-center">Редактирование модели авто:</h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Выберите модель:</label>
-                <select name="modelToUpdate" class="form-control" style="margin-top: 10px">
+                <label>Выберите бренд:</label>
+                <select name="brandToUpdateModel" class="form-control" style="margin-top: 10px" id="brandToUpdateModel">
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
-                    <c:forEach var="model" items="${models}">
-                        <option value="${model.modelId}">${model.model}</option>
+                    <c:forEach var="brand" items="${brands}">
+                        <option value="${brand.brandId}">${brand.brand}</option>
                     </c:forEach>
                 </select>
+                <hr/>
+                <label>Выберите модель:</label>
+                <div id="selectModel"></div>
                 <hr/>
                 <input type="text" name="changedValue" placeholder="введите изменение" class="form-control" required>
             </div>
@@ -129,8 +133,30 @@
     <h5><fmt:message key="label.footer"/></h5>
 </footer>
 
+    <script>
+        $(document).ready(function() {
+            $('#brandToUpdateModel').change(function () {
+                var brandId = $('#brandToUpdateModel').val();
+                console.log(brandId);
+                $.ajax({
+                    type: 'POST',
+                    url: "/getModels",
+                    data: { brandId : brandId },
+                    success : function (responseJson) {
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                        var $select = $("<select>").addClass("form-control").attr('name', 'modelToUpdate').attr('required','true').appendTo($("#selectModel"));
+                        $("<option>").text("").appendTo($select);
+                        $.each(responseJson, function (key, value) {
+                            $("<option>").val(key).text(value).appendTo($select);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>

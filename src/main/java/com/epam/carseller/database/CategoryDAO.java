@@ -23,6 +23,7 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CATEGORIES)){
@@ -48,6 +49,7 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CATEGORY_BY_ID)) {
@@ -70,6 +72,7 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY)){
@@ -88,6 +91,7 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY)){
@@ -104,6 +108,7 @@ public class CategoryDAO {
         ConnectionPool pool = null;
         Connection connection = null;
         try {
+            ConnectionPool.init();
             pool = ConnectionPool.getInstance();
             connection = pool.takeConnection();
             try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_CATEGORY)){
