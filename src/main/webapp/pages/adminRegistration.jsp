@@ -32,12 +32,12 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <c:choose>
                                     <c:when test="${sessionScope.role == 'Admin'}">
-                                        <a class="dropdown-item" href="/admin">Админ панель</a>
-                                        <a class="dropdown-item" href="/logout">выйти</a>
+                                        <a class="dropdown-item" href="/admin"><fmt:message key="label.adminPanel"/></a>
+                                        <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="dropdown-item" href="/account">личный кабинет</a>
-                                        <a class="dropdown-item" href="/logout">выйти</a>
+                                        <a class="dropdown-item" href="/account"><fmt:message key="label.account"/></a>
+                                        <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -57,8 +57,8 @@
                         <fmt:message key="label.lang"/>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/adminRegistration?sessionLocale=en">ENG</a>
-                        <a class="dropdown-item" href="/adminRegistration?sessionLocale=ru">РУС</a>
+                        <a class="dropdown-item" href="/admin/registrationPage?sessionLocale=en">ENG</a>
+                        <a class="dropdown-item" href="/admin/registrationPage?sessionLocale=ru">РУС</a>
                     </div>
                 </li>
             </ul>
@@ -66,37 +66,33 @@
     </nav>
 
     <form class="registerForm" method="post" action="/admin/registerAdmin">
-        <h3 class="text-center">Регистрация</h3>
+        <h3 class="text-center"><fmt:message key="label.registration"/></h3>
         <c:choose>
             <c:when test="${incorrectData == '1'}">
                 <p class="text-center" style="color: red"><fmt:message key="label.incorrectFields"/></p>
             </c:when>
         </c:choose>
         <div class="form-group">
-            <label>Enter admin username:</label>
-            <input type="text" name="username" placeholder="Enter username" class="form-control">
+            <label><fmt:message key="label.enterUsername"/></label>
+            <input type="text" name="username" placeholder="<fmt:message key="label.enterUsername"/>" class="form-control">
         </div>
         <div class="form-group">
-            <label>Enter admin password:</label>
-            <input type="password" name="password" placeholder="Enter password" class="form-control">
+            <label><fmt:message key="label.password"/></label>
+            <input type="password" name="password" placeholder="<fmt:message key="label.password"/>" class="form-control">
         </div>
         <div class="form-group">
-            <label>Repeat admin password:</label>
-            <input type="password" name="passwordRepeat" placeholder="Enter password" class="form-control">
-        </div>
-        <%--<div class="form-group">
-            <label>Enter your email:</label>
-            <input type="email" name="email" placeholder="example@gmail.com" class="form-control">
-        </div>--%>
-        <div class="form-group">
-            <label>Enter admin first name:</label>
-            <input type="text" name="firstName" placeholder="First name" class="form-control">
+            <label><fmt:message key="label.repeatPassword"/></label>
+            <input type="password" name="passwordRepeat" placeholder="<fmt:message key="label.repeatPassword"/>" class="form-control">
         </div>
         <div class="form-group">
-            <label>Enter admin second name:</label>
-            <input type="text" name="secondName" placeholder="Second name" class="form-control">
+            <label><fmt:message key="label.firstName"/> </label>
+            <input type="text" name="firstName" placeholder="<fmt:message key="label.firstName"/>" class="form-control">
         </div>
-        <input type="submit" value="Registration" class="btn btn-success">
+        <div class="form-group">
+            <label><fmt:message key="label.secondName"/> </label>
+            <input type="text" name="secondName" placeholder="<fmt:message key="label.secondName"/>" class="form-control">
+        </div>
+        <input type="submit" value="<fmt:message key="label.registration"/>" class="btn btn-success">
     </form>
 
     <footer class="container-fluid text-center bg-dark text-light" >

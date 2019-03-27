@@ -24,12 +24,12 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <c:choose>
                                 <c:when test="${sessionScope.role == 'Admin'}">
-                                    <a class="dropdown-item" href="/admin">Админ панель</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/admin"><fmt:message key="label.adminPanel"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="dropdown-item" href="/account">личный кабинет</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/account"><fmt:message key="label.account"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -49,35 +49,35 @@
                     <fmt:message key="label.lang"/>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/?sessionLocale=en">ENG</a>
-                    <a class="dropdown-item" href="/?sessionLocale=ru">РУС</a>
+                    <a class="dropdown-item" href="/admin/states?sessionLocale=en">ENG</a>
+                    <a class="dropdown-item" href="/admin/states?sessionLocale=ru">РУС</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 
-<h1 class="text-center">Раздел "Состояние авто"</h1>
+<h1 class="text-center"><fmt:message key="label.correctState"/></h1>
 
 <form method="get" action="/admin/addState">
-    <h4 class="text-center">Добавление состояния авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.addStateAuto"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Введите состояние авто:</label>
-                <input type="text" name="newState" placeholder="состояние авто" class="form-control">
+                <label><fmt:message key="label.enterState"/></label>
+                <input type="text" name="newState" placeholder="<fmt:message key="label.stateName"/>" class="form-control">
             </div>
-            <input type="submit" value="Добавить" class="btn btn-success">
+            <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
         </div>
     </div>
 </form>
 <hr/>
 <form method="get" action="/admin/correctState">
-    <h4 class="text-center">Редактирование состояния авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.correctingAutoState"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Выберите состояние авто:</label>
+                <label><fmt:message key="label.chooseState"/></label>
                 <select name="stateToUpdate" class="form-control" style="margin-top: 10px">
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="state" items="${states}">
@@ -85,19 +85,19 @@
                     </c:forEach>
                 </select>
                 <hr/>
-                <input type="text" name="changedValue" placeholder="введите изменение" class="form-control" required>
+                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
             </div>
-            <input type="submit" value="Редактировать" class="btn btn-info">
+            <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
         </div>
     </div>
 </form>
 <hr/>
 <form method="get" action="/admin/deleteState">
-    <h4 class="text-center">Удаление состояния авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.deletingAutoState"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Выберите состояние авто:</label>
+                <label><fmt:message key="label.chooseState"/></label>
                 <select name="stateToDelete" class="form-control">
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="state" items="${states}">
@@ -105,7 +105,7 @@
                     </c:forEach>
                 </select>
             </div>
-            <input type="submit" value="Удалить" class="btn btn-danger">
+            <input type="submit" value="<fmt:message key="label.delete"/>" class="btn btn-danger">
         </div>
     </div>
 </form>

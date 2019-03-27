@@ -32,12 +32,12 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <c:choose>
                                 <c:when test="${sessionScope.role == 'Admin'}">
-                                    <a class="dropdown-item" href="/admin">Админ панель</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/admin"><fmt:message key="label.adminPanel"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="dropdown-item" href="/account">личный кабинет</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/account"><fmt:message key="label.account"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -57,43 +57,43 @@
                     <fmt:message key="label.lang"/>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/?sessionLocale=en">ENG</a>
-                    <a class="dropdown-item" href="/?sessionLocale=ru">РУС</a>
+                    <a class="dropdown-item" href="/admin/models?sessionLocale=en">ENG</a>
+                    <a class="dropdown-item" href="/admin/models?sessionLocale=ru">РУС</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 
-<h1 class="text-center">Раздел "Модели авто"</h1>
+<h1 class="text-center"><fmt:message key="label.correctModel"/> </h1>
 <hr/>
 <form method="get" action="/admin/addModel">
-    <h4 class="text-center">Добавление модели авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.addModelAuto"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
 
-                <label>Выберите бренд:</label>
+                <label><fmt:message key="label.chooseBrand"/></label>
                 <select name="brand" class="form-control" style="margin-top: 10px" required>
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="brand" items="${brands}">
                         <option value="${brand.brandId}">${brand.brand}</option>
                     </c:forEach>
                 </select>
-                <label>Введите модель:</label>
-                <input type="text" name="newModel" placeholder="название модели" class="form-control">
+                <label><fmt:message key="label.enterModel"/></label>
+                <input type="text" name="newModel" placeholder="<fmt:message key="label.modelName"/>" class="form-control">
             </div>
-            <input type="submit" value="Добавить" class="btn btn-success">
+            <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
         </div>
     </div>
 </form>
 <hr/>
 <form method="get" action="/admin/correctModel">
-    <h4 class="text-center">Редактирование модели авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.correctingAutoModel"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Выберите бренд:</label>
+                <label><fmt:message key="label.chooseBrand"/></label>
                 <select name="brandToUpdateModel" class="form-control" style="margin-top: 10px" id="brandToUpdateModel">
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="brand" items="${brands}">
@@ -101,22 +101,22 @@
                     </c:forEach>
                 </select>
                 <hr/>
-                <label>Выберите модель:</label>
+                <label><fmt:message key="label.chooseModel"/></label>
                 <div id="selectModel"></div>
                 <hr/>
-                <input type="text" name="changedValue" placeholder="введите изменение" class="form-control" required>
+                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
             </div>
-            <input type="submit" value="Редактировать" class="btn btn-info">
+            <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
         </div>
     </div>
 </form>
 <hr/>
 <form method="get" action="/admin/deleteModel">
-    <h4 class="text-center">Удаление модели авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.deletingAutoModel"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Выберите модель:</label>
+                <label><fmt:message key="label.chooseModel"/></label>
                 <select name="modelToDelete" class="form-control">
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="model" items="${models}">
@@ -124,7 +124,7 @@
                     </c:forEach>
                 </select>
             </div>
-            <input type="submit" value="Удалить" class="btn btn-danger">
+            <input type="submit" value="<fmt:message key="label.delete"/>" class="btn btn-danger">
         </div>
     </div>
 </form>

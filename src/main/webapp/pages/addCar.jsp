@@ -32,12 +32,12 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <c:choose>
                                 <c:when test="${sessionScope.role == 'Admin'}">
-                                    <a class="dropdown-item" href="/admin">Админ панель</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/admin"><fmt:message key="label.adminPanel"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="dropdown-item" href="/account">личный кабинет</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/account"><fmt:message key="label.account"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -57,8 +57,8 @@
                     <fmt:message key="label.lang"/>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/?sessionLocale=en">ENG</a>
-                    <a class="dropdown-item" href="/?sessionLocale=ru">РУС</a>
+                    <a class="dropdown-item" href="/addCar?sessionLocale=en">ENG</a>
+                    <a class="dropdown-item" href="/addCar?sessionLocale=ru">РУС</a>
                 </div>
             </li>
         </ul>
@@ -66,7 +66,12 @@
 </nav>
 
     <form action="/saveCar" method="post" class="registerForm" enctype="multipart/form-data">
-        <h3 class="text-center">Add car</h3>
+        <h3 class="text-center"><fmt:message key="label.addCar"/></h3>
+        <c:choose>
+            <c:when test="${emptyFields == true}">
+                <p class="text-center" style="color: red"><fmt:message key="label.emptyFields"/></p>
+            </c:when>
+        </c:choose>
         <div class="form-group">
             <label><fmt:message key="label.model"/></label>
             <select name="Model" class="form-control">

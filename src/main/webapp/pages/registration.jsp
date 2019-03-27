@@ -44,43 +44,44 @@
         </div>
     </nav>
     <form class="registerForm" action="/register" method="post">
-        <h3 class="text-center">Регистрация</h3>
+        <h3 class="text-center"><fmt:message key="label.registration"/></h3>
         <c:choose>
             <c:when test="${incorrectData == '1'}">
                 <p class="text-center" style="color: red"><fmt:message key="label.incorrectFields"/></p>
             </c:when>
         </c:choose>
+        <c:choose>
+            <c:when test="${userExists == true}">
+                <fmt:message key="label.userExists"/>
+            </c:when>
+        </c:choose>
         <div class="form-group">
-            <label>Enter your username:</label>
-            <input type="text" name="username" placeholder="Enter username" class="form-control" id="username">
-            <p>Проверка пользователя: <span id="message" style="font-size: 15px; color: red;"></span></p>
-            <p>(V - свободно, X - занято)</p>
+            <label><fmt:message key="label.enterUsername"/></label>
+            <input type="text" name="username" placeholder="<fmt:message key="label.enterUsername"/>" class="form-control" id="username">
+            <p><fmt:message key="label.checkUsername"/><span id="message" style="font-size: 15px; color: red;"></span></p>
+            <p>(V - <fmt:message key="label.free"/> , X - <fmt:message key="label.used"/>)</p>
         </div>
         <div class="form-group">
-            <label>Enter your password:</label>
-            <input type="password" name="password" placeholder="Enter password" class="form-control">
+            <label><fmt:message key="label.password"/></label>
+            <input type="password" name="password" placeholder="<fmt:message key="label.password"/>" class="form-control">
         </div>
         <div class="form-group">
-            <label>Repeat your password:</label>
-            <input type="password" name="passwordRepeat" placeholder="Enter password" class="form-control">
-        </div>
-        <%--<div class="form-group">
-            <label>Enter your email:</label>
-            <input type="email" name="email" placeholder="example@gmail.com" class="form-control">
-        </div>--%>
-        <div class="form-group">
-            <label>Enter your first name:</label>
-            <input type="text" name="firstName" placeholder="First name" class="form-control">
+            <label><fmt:message key="label.repeatPassword"/></label>
+            <input type="password" name="passwordRepeat" placeholder="<fmt:message key="label.repeatPassword"/>" class="form-control">
         </div>
         <div class="form-group">
-            <label>Enter your second name:</label>
-            <input type="text" name="secondName" placeholder="Second name" class="form-control">
+            <label><fmt:message key="label.firstName"/> </label>
+            <input type="text" name="firstName" placeholder="<fmt:message key="label.firstName"/>" class="form-control">
         </div>
         <div class="form-group">
-            <label>Enter your phone number:</label>
-            <input type="text" name="phoneNumber" placeholder="Phone number" class="form-control">
+            <label><fmt:message key="label.secondName"/> </label>
+            <input type="text" name="secondName" placeholder="<fmt:message key="label.secondName"/>" class="form-control">
         </div>
-        <input type="submit" value="Registration" class="btn btn-success">
+        <div class="form-group">
+            <label><fmt:message key="label.phoneNumber"/></label>
+            <input type="text" name="phoneNumber" placeholder="<fmt:message key="label.phoneNumber"/>" class="form-control">
+        </div>
+        <input type="submit" value="<fmt:message key="label.registration"/>" class="btn btn-success">
     </form>
 
     <footer class="container-fluid text-center bg-dark text-light" >

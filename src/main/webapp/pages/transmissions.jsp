@@ -24,12 +24,12 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <c:choose>
                                 <c:when test="${sessionScope.role == 'Admin'}">
-                                    <a class="dropdown-item" href="/admin">Админ панель</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/admin"><fmt:message key="label.adminPanel"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="dropdown-item" href="/account">личный кабинет</a>
-                                    <a class="dropdown-item" href="/logout">выйти</a>
+                                    <a class="dropdown-item" href="/account"><fmt:message key="label.account"/></a>
+                                    <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -49,35 +49,35 @@
                     <fmt:message key="label.lang"/>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="/?sessionLocale=en">ENG</a>
-                    <a class="dropdown-item" href="/?sessionLocale=ru">РУС</a>
+                    <a class="dropdown-item" href="/admin/transmissions?sessionLocale=en">ENG</a>
+                    <a class="dropdown-item" href="/admin/transmissions?sessionLocale=ru">РУС</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
 
-<h1 class="text-center">Раздел "Тип трансмиссии авто"</h1>
+<h1 class="text-center"><fmt:message key="label.correctTransmission"/></h1>
 
 <form method="get" action="/admin/addTransmission">
-    <h4 class="text-center">Добавление типа трансмиссии авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.addTransmissionAuto"/> </h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Введите тип трансмиссии:</label>
-                <input type="text" name="newTransmission" placeholder="тип трансмиссии" class="form-control">
+                <label><fmt:message key="label.enterTransmission"/></label>
+                <input type="text" name="newTransmission" placeholder="<fmt:message key="label.transmissionName"/>" class="form-control">
             </div>
-            <input type="submit" value="Добавить" class="btn btn-success">
+            <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
         </div>
     </div>
 </form>
 <hr/>
 <form method="get" action="/admin/correctTransmission">
-    <h4 class="text-center">Редактирование типа трансмиссии авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.correctingAutoTransmission"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Выберите тип трансмиссии:</label>
+                <label><fmt:message key="label.chooseTransmission"/></label>
                 <select name="transmissionToUpdate" class="form-control" style="margin-top: 10px">
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="transmission" items="${transmissions}">
@@ -85,19 +85,19 @@
                     </c:forEach>
                 </select>
                 <hr/>
-                <input type="text" name="changedValue" placeholder="введите изменение" class="form-control" required>
+                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
             </div>
-            <input type="submit" value="Редактировать" class="btn btn-info">
+            <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
         </div>
     </div>
 </form>
 <hr/>
 <form method="get" action="/admin/deleteTransmission">
-    <h4 class="text-center">Удаление типа трансмиссии авто:</h4>
+    <h4 class="text-center"><fmt:message key="label.deletingAutoTransmission"/></h4>
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
-                <label>Выберите тип трансмиссии:</label>
+                <label><fmt:message key="label.chooseTransmission"/></label>
                 <select name="transmissionToDelete" class="form-control">
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="transmission" items="${transmissions}">
@@ -105,7 +105,7 @@
                     </c:forEach>
                 </select>
             </div>
-            <input type="submit" value="Удалить" class="btn btn-danger">
+            <input type="submit" value="<fmt:message key="label.delete"/>" class="btn btn-danger">
         </div>
     </div>
 </form>

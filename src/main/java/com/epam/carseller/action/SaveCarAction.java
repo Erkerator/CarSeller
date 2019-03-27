@@ -36,49 +36,42 @@ public class SaveCarAction implements Action {
         String category = request.getParameter("Category");
         String state = request.getParameter("State");
         String yearOfProduce = request.getParameter("YearOfProduce");
-        Float engineVolume = Float.parseFloat(request.getParameter("EngineVolume"));
+        String engineVolume = request.getParameter("EngineVolume");
+        RequestDispatcher requestDispatcher;
 
-        System.out.println(model);
-        System.out.println(transmission);
-        System.out.println(category);
-        System.out.println(state);
-        System.out.println(yearOfProduce);
-        System.out.println(engineVolume);
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = new Date();
-        String currentDate = dateFormat.format(date);
-        System.out.println(currentDate);
-
-        CarDAO carDAO = new CarDAO();
-        Car car = new Car();
-
-        InputStream inputStream = null;
-        Part filePart = request.getPart("photo");
-
-        if (filePart != null) {
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
-
-            inputStream = filePart.getInputStream();
+        if (model != null && transmission != null && category != null && state != null && yearOfProduce != null && engineVolume != null) {
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = new Date();
+            String currentDate = dateFormat.format(date);
+            CarDAO carDAO = new CarDAO();
+            Car car = new Car();
+            InputStream inputStream = null;
+            Part filePart = request.getPart("photo");
+            if (filePart != null) {
+                inputStream = filePart.getInputStream();
+            }
+            car.setModelId(model);
+            car.setTransmissionId(transmission);
+            car.setCategoryId(category);
+            car.setStateId(state);
+            try {
+                car.setYearOfProduce(new SimpleDateFormat("yyyy").parse(yearOfProduce));
+                car.setDateOfCreation(new SimpleDateFormat("dd-MM-yyyy").parse(currentDate));
+            } catch (ParseException e) {
+                logger.error("Date converting: " + e);
+            }
+            car.setEngineVolume(Float.parseFloat(engineVolume));
+            byte image[] = IOUtils.toByteArray(inputStream);
+            car.setPhoto(image);
+            car.setLanguageId(languageId);
+            car.setUserId(Integer.toString(userId));
+            carDAO.insert(car);
+            requestDispatcher = request.getRequestDispatcher("/pages/account.jsp");
+            requestDispatcher.forward(request,response);
+        } else {
+            request.setAttribute("emptyFields", true);
+            requestDispatcher = request.getRequestDispatcher("/pages/addCar.jsp");
+            requestDispatcher.forward(request,response);
         }
-        car.setModelId(request.getParameter("Model"));
-        car.setTransmissionId(request.getParameter("Transmission"));
-        car.setCategoryId(request.getParameter("Category"));
-        car.setStateId(request.getParameter("State"));
-        try {
-            car.setYearOfProduce(new SimpleDateFormat("yyyy").parse(request.getParameter("YearOfProduce")));
-            car.setDateOfCreation(new SimpleDateFormat("dd-MM-yyyy").parse(currentDate));
-        } catch (ParseException e) {
-            logger.error("Date converting: " + e);
-        }
-        car.setEngineVolume(Float.parseFloat(request.getParameter("EngineVolume")));
-        byte image[] = IOUtils.toByteArray(inputStream);
-        car.setPhoto(image);
-        car.setLanguageId(languageId);
-        car.setUserId(Integer.toString(userId));
-        carDAO.insert(car);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/account.jsp");
-        requestDispatcher.forward(request,response);
     }
 }

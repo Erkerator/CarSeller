@@ -33,12 +33,12 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <c:choose>
                                     <c:when test="${sessionScope.role == 'Admin'}">
-                                        <a class="dropdown-item" href="/admin">Админ панель</a>
-                                        <a class="dropdown-item" href="/logout">выйти</a>
+                                        <a class="dropdown-item" href="/admin"><fmt:message key="label.adminPanel"/></a>
+                                        <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="dropdown-item" href="/account">личный кабинет</a>
-                                        <a class="dropdown-item" href="/logout">выйти</a>
+                                        <a class="dropdown-item" href="/account"><fmt:message key="label.account"/></a>
+                                        <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -53,20 +53,11 @@
                         </li>
                     </c:otherwise>
                 </c:choose>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <fmt:message key="label.lang"/>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/cardetails?sessionLocale=en">ENG</a>
-                        <a class="dropdown-item" href="/cardetails?sessionLocale=ru">РУС</a>
-                    </div>
-                </li>
             </ul>
         </div>
     </nav>
 
-    <h3 class="text-center">Car Details</h3>
+    <h3 class="text-center"><fmt:message key="label.carDetails"/></h3>
 
     <div class="container">
         <img src="${pageContext.request.contextPath}/ImageHandler?id=${carData.carId}" class="d-block w-50 mx-auto">

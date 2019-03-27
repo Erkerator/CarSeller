@@ -31,12 +31,12 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <c:choose>
                                     <c:when test="${sessionScope.role == 'Admin'}">
-                                        <a class="dropdown-item" href="/admin">Админ панель</a>
-                                        <a class="dropdown-item" href="/logout">выйти</a>
+                                        <a class="dropdown-item" href="/admin"><fmt:message key="label.adminPanel"/></a>
+                                        <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="dropdown-item" href="/account">личный кабинет</a>
-                                        <a class="dropdown-item" href="/logout">выйти</a>
+                                        <a class="dropdown-item" href="/account"><fmt:message key="label.account"/></a>
+                                        <a class="dropdown-item" href="/logout"><fmt:message key="label.exit"/></a>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -56,30 +56,30 @@
                         <fmt:message key="label.lang"/>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/?sessionLocale=en">ENG</a>
-                        <a class="dropdown-item" href="/?sessionLocale=ru">РУС</a>
+                        <a class="dropdown-item" href="/admin?sessionLocale=en">ENG</a>
+                        <a class="dropdown-item" href="/admin?sessionLocale=ru">РУС</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <h1 class="text-center">Панель администратора</h1>
+    <h1 class="text-center"><fmt:message key="label.administatorPanel"/></h1>
     <div class="container">
         <div class="row" style="margin-top: 10px">
-            <a href="/admin/categories" class="btn btn-info btn-block" role="button">Редактировать раздел: "Категории авто"</a>
+            <a href="/admin/categories" class="btn btn-info btn-block" role="button"><fmt:message key="label.correctCategory"/></a>
         </div>
         <div class="row" style="margin-top: 10px">
-            <a href="/admin/models" class="btn btn-info btn-block" role="button">Редактировать раздел: "Модель авто"</a>
+            <a href="/admin/models" class="btn btn-info btn-block" role="button"><fmt:message key="label.correctModel"/></a>
         </div>
         <div class="row" style="margin-top: 10px">
-            <a href="/admin/transmissions" class="btn btn-info btn-block" role="button">Редактировать раздел: "Трансмиссию авто"</a>
+            <a href="/admin/transmissions" class="btn btn-info btn-block" role="button"><fmt:message key="label.correctTransmission"/></a>
         </div>
         <div class="row" style="margin-top: 10px">
-            <a href="/admin/states" class="btn btn-info btn-block" role="button">Редактировать раздел: "Состояние авто"</a>
+            <a href="/admin/states" class="btn btn-info btn-block" role="button"><fmt:message key="label.correctState"/> </a>
         </div>
         <div class="row" style="margin-top: 10px">
-            <a href="/admin/registrationPage" class="btn btn-info btn-block" role="button">Добавить администратора</a>
+            <a href="/admin/registrationPage" class="btn btn-info btn-block" role="button"><fmt:message key="label.addAdministrator"/></a>
         </div>
     </div>
 
