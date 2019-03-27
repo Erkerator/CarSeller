@@ -65,19 +65,19 @@
 </nav>
 
 <h1 class="text-center"><fmt:message key="label.correctBrand"/></h1>
-
+<c:choose>
+    <c:when test="${incorrectData == true}">
+        <p class="text-center" style="color: red"><fmt:message key="label.incorrectFields"/></p>
+    </c:when>
+</c:choose>
 <form method="get" action="/admin/addBrand">
     <h4 class="text-center"><fmt:message key="label.addBrandAuto"/></h4>
-    <c:choose>
-        <c:when test="${incorrectData == true}">
-            <p class="text-center" style="color: red"><fmt:message key="label.incorrectFields"/></p>
-        </c:when>
-    </c:choose>
+
     <div class="row justify-content-center">
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.enterBrand"/></label>
-                <input type="text" name="newBrand" placeholder="<fmt:message key="label.brandName"/>" class="form-control">
+                <input type="text" name="newBrand" placeholder="<fmt:message key="label.brandName"/>" class="form-control" required maxlength="20">
             </div>
             <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
         </div>
@@ -90,14 +90,14 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.enterBrand"/></label>
-                <select name="brandToUpdate" class="form-control" style="margin-top: 10px">
+                <select name="brandToUpdate" class="form-control" style="margin-top: 10px" required>
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="brand" items="${brands}">
                         <option value="${brand.brandId}">${brand.brand}</option>
                     </c:forEach>
                 </select>
                 <hr/>
-                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
+                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required maxlength="20">
             </div>
             <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
         </div>
@@ -110,7 +110,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.chooseBrand"/></label>
-                <select name="brandToDelete" class="form-control">
+                <select name="brandToDelete" class="form-control" required>
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="brand" items="${brands}">
                         <option value="${brand.brandId}">${brand.brand}</option>

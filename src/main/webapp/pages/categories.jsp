@@ -77,7 +77,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label><fmt:message key="label.enterCategory"/></label>
-                    <input type="text" name="newCategory" placeholder="<fmt:message key="label.categoryName"/>" class="form-control">
+                    <input type="text" name="newCategory" placeholder="<fmt:message key="label.categoryName"/>" class="form-control" maxlength="20">
                 </div>
                 <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
             </div>
@@ -90,14 +90,14 @@
             <div class="col-6">
                 <div class="form-group">
                     <label><fmt:message key="label.enterCategory"/></label>
-                    <select name="categoryToUpdate" class="form-control" style="margin-top: 10px">
+                    <select name="categoryToUpdate" class="form-control" style="margin-top: 10px" required>
                         <option disabled selected value><fmt:message key="label.selectOption"/></option>
                         <c:forEach var="category" items="${categories}">
                             <option value="${category.categoryId}">${category.category}</option>
                         </c:forEach>
                     </select>
                     <hr/>
-                    <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
+                    <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required maxlength="20">
                 </div>
                 <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
             </div>
@@ -110,14 +110,14 @@
             <div class="col-6">
                 <div class="form-group">
                     <label><fmt:message key="label.chooseCategory"/></label>
-                    <select name="categoryToDelete" class="form-control">
+                    <select name="categoryToDelete" class="form-control" required>
                         <option disabled selected value><fmt:message key="label.selectOption"/></option>
                         <c:forEach var="category" items="${categories}">
                             <option value="${category.categoryId}">${category.category}</option>
                         </c:forEach>
                     </select>
                 </div>
-                <input type="submit" value="<fmt:message key="label.delete"/>" class="btn btn-danger">
+                <input type="submit" value="<fmt:message key="label.delete"/>" class="btn btn-danger" maxlength="20">
             </div>
         </div>
     </form>

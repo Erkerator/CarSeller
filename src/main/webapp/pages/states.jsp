@@ -69,7 +69,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.enterState"/></label>
-                <input type="text" name="newState" placeholder="<fmt:message key="label.stateName"/>" class="form-control">
+                <input type="text" name="newState" placeholder="<fmt:message key="label.stateName"/>" class="form-control" required maxlength="20">
             </div>
             <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
         </div>
@@ -89,7 +89,7 @@
                     </c:forEach>
                 </select>
                 <hr/>
-                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
+                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required maxlength="20">
             </div>
             <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
         </div>
@@ -102,7 +102,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.chooseState"/></label>
-                <select name="stateToDelete" class="form-control">
+                <select name="stateToDelete" class="form-control" required>
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="state" items="${states}">
                         <option value="${state.stateId}">${state.state}</option>

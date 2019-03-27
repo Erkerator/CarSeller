@@ -79,23 +79,23 @@
         </c:choose>
         <div class="form-group">
             <label><fmt:message key="label.enterUsername"/></label>
-            <input type="text" name="username" placeholder="<fmt:message key="label.enterUsername"/>" class="form-control">
+            <input type="text" name="username" placeholder="<fmt:message key="label.enterUsername"/>" class="form-control" maxlength="20">
         </div>
         <div class="form-group">
             <label><fmt:message key="label.password"/></label>
-            <input type="password" name="password" placeholder="<fmt:message key="label.password"/>" class="form-control">
+            <input type="password" name="password" placeholder="<fmt:message key="label.password"/>" class="form-control" maxlength="20">
         </div>
         <div class="form-group">
             <label><fmt:message key="label.repeatPassword"/></label>
-            <input type="password" name="passwordRepeat" placeholder="<fmt:message key="label.repeatPassword"/>" class="form-control">
+            <input type="password" name="passwordRepeat" placeholder="<fmt:message key="label.repeatPassword"/>" class="form-control" maxlength="20">
         </div>
         <div class="form-group">
             <label><fmt:message key="label.firstName"/> </label>
-            <input type="text" name="firstName" placeholder="<fmt:message key="label.firstName"/>" class="form-control">
+            <input type="text" name="firstName" placeholder="<fmt:message key="label.firstName"/>" class="form-control" maxlength="20">
         </div>
         <div class="form-group">
             <label><fmt:message key="label.secondName"/> </label>
-            <input type="text" name="secondName" placeholder="<fmt:message key="label.secondName"/>" class="form-control">
+            <input type="text" name="secondName" placeholder="<fmt:message key="label.secondName"/>" class="form-control" maxlength="20">
         </div>
         <input type="submit" value="<fmt:message key="label.registration"/>" class="btn btn-success">
     </form>

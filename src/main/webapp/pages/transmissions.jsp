@@ -70,7 +70,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.enterTransmission"/></label>
-                <input type="text" name="newTransmission" placeholder="<fmt:message key="label.transmissionName"/>" class="form-control">
+                <input type="text" name="newTransmission" placeholder="<fmt:message key="label.transmissionName"/>" class="form-control" maxlength="20" required>
             </div>
             <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
         </div>
@@ -90,7 +90,7 @@
                     </c:forEach>
                 </select>
                 <hr/>
-                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
+                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required maxlength="20">
             </div>
             <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
         </div>
@@ -103,7 +103,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.chooseTransmission"/></label>
-                <select name="transmissionToDelete" class="form-control">
+                <select name="transmissionToDelete" class="form-control" required>
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="transmission" items="${transmissions}">
                         <option value="${transmission.transmissionId}">${transmission.transmission}</option>

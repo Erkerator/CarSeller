@@ -86,7 +86,7 @@
                     </c:forEach>
                 </select>
                 <label><fmt:message key="label.enterModel"/></label>
-                <input type="text" name="newModel" placeholder="<fmt:message key="label.modelName"/>" class="form-control">
+                <input type="text" name="newModel" placeholder="<fmt:message key="label.modelName"/>" class="form-control" maxlength="20" required>
             </div>
             <input type="submit" value="<fmt:message key="label.add"/>" class="btn btn-success">
         </div>
@@ -100,7 +100,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.chooseBrand"/></label>
-                <select name="brandToUpdateModel" class="form-control" style="margin-top: 10px" id="brandToUpdateModel">
+                <select name="brandToUpdateModel" class="form-control" style="margin-top: 10px" id="brandToUpdateModel" required>
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="brand" items="${brands}">
                         <option value="${brand.brandId}">${brand.brand}</option>
@@ -110,7 +110,7 @@
                 <label><fmt:message key="label.chooseModel"/></label>
                 <div id="selectModel"></div>
                 <hr/>
-                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required>
+                <input type="text" name="changedValue" placeholder="<fmt:message key="label.enterCorrection"/>" class="form-control" required maxlength="20">
             </div>
             <input type="submit" value="<fmt:message key="label.correct"/>" class="btn btn-info">
         </div>
@@ -123,7 +123,7 @@
         <div class="col-6">
             <div class="form-group">
                 <label><fmt:message key="label.chooseModel"/></label>
-                <select name="modelToDelete" class="form-control">
+                <select name="modelToDelete" class="form-control" required>
                     <option disabled selected value><fmt:message key="label.selectOption"/></option>
                     <c:forEach var="model" items="${models}">
                         <option value="${model.modelId}">${model.model}</option>

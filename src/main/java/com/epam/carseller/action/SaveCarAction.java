@@ -1,9 +1,7 @@
 package com.epam.carseller.action;
 
-import com.epam.carseller.database.CarDAO;
-import com.epam.carseller.database.LanguagesDAO;
-import com.epam.carseller.entity.Car;
-import com.epam.carseller.entity.Languages;
+import com.epam.carseller.database.*;
+import com.epam.carseller.entity.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
@@ -20,6 +18,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class SaveCarAction implements Action {
     Logger logger = Logger.getLogger(SaveCarAction.class);
@@ -69,6 +68,18 @@ public class SaveCarAction implements Action {
             requestDispatcher = request.getRequestDispatcher("/pages/account.jsp");
             requestDispatcher.forward(request,response);
         } else {
+            ModelDAO modelDAO = new ModelDAO();
+            TransmissionDAO transmissionDAO = new TransmissionDAO();
+            CategoryDAO categoryDAO = new CategoryDAO();
+            StateDAO stateDAO = new StateDAO();
+            List<Model> listOfModels = modelDAO.getAll();
+            List<Transmission> listOfTransmissions = transmissionDAO.getAll(languageId);
+            List<Category> listOfCategories = categoryDAO.getAll(languageId);
+            List<State> listOfStates = stateDAO.getAll(languageId);
+            request.setAttribute("statesList", listOfStates);
+            request.setAttribute("categoriesList", listOfCategories);
+            request.setAttribute("modelsList", listOfModels);
+            request.setAttribute("transmissionsList", listOfTransmissions);
             request.setAttribute("emptyFields", true);
             requestDispatcher = request.getRequestDispatcher("/pages/addCar.jsp");
             requestDispatcher.forward(request,response);
