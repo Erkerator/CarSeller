@@ -52,7 +52,7 @@
         </c:choose>
         <c:choose>
             <c:when test="${userExists == true}">
-                <fmt:message key="label.userExists"/>
+                <p class="text-center" style="color: red"><fmt:message key="label.userExists"/></p>
             </c:when>
         </c:choose>
         <div class="form-group">

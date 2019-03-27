@@ -14,12 +14,10 @@ public class CheckUsernameAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String newUsername = request.getParameter("username");
-        System.out.println(newUsername);
         UserDAO userDAO = new UserDAO();
         List<User> listOfUsers = userDAO.getAll();
         boolean userExists = false;
         for (User user:listOfUsers) {
-            System.out.println(user);
             String usernameFromBD = user.getUsername();
             if (usernameFromBD.equals(newUsername)) {
                 userExists = true;
@@ -34,6 +32,5 @@ public class CheckUsernameAction implements Action {
             PrintWriter out = response.getWriter();
             out.print("V");
         }
-        //request.setAttribute("userExists", userExists);
     }
 }

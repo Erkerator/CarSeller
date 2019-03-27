@@ -21,14 +21,14 @@ public class UserRegistrationAction implements Action {
         UserDAO userDAO = new UserDAO();
         User user = new User();
         List<User> listOfUsers = userDAO.getAll();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String passwordRepeat = request.getParameter("passwordRepeat");
-        String firstName = request.getParameter("firstName");
-        String secondName = request.getParameter("secondName");
-        String phoneNumber = request.getParameter("phoneNumber");
+        String username = request.getParameter("username").trim().toUpperCase();
+        String password = request.getParameter("password").trim();
+        String passwordRepeat = request.getParameter("passwordRepeat").trim();
+        String firstName = request.getParameter("firstName").trim();
+        String secondName = request.getParameter("secondName").trim();
+        String phoneNumber = request.getParameter("phoneNumber").trim();
         for (User element:listOfUsers) {
-            if (element.getUsername().equals(username)) {
+            if (element.getUsername().toUpperCase().equals(username)) {
                 existence = true;
             }
         }

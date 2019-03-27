@@ -68,8 +68,13 @@
     <form class="registerForm" method="post" action="/admin/registerAdmin">
         <h3 class="text-center"><fmt:message key="label.registration"/></h3>
         <c:choose>
-            <c:when test="${incorrectData == '1'}">
+            <c:when test="${incorrectData == true}">
                 <p class="text-center" style="color: red"><fmt:message key="label.incorrectFields"/></p>
+            </c:when>
+        </c:choose>
+        <c:choose>
+            <c:when test="${userExists == true}">
+                <p class="text-center" style="color: red"><fmt:message key="label.userExists"/></p>
             </c:when>
         </c:choose>
         <div class="form-group">
