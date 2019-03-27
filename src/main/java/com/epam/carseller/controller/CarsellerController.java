@@ -4,6 +4,7 @@ import com.epam.carseller.action.Action;
 import com.epam.carseller.action.ActionFactory;
 import org.apache.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +24,13 @@ public class CarsellerController extends HttpServlet {
         String actionRequest = request.getRequestURI();
         ActionFactory actionFactory = ActionFactory.getInstance();
         Action action = actionFactory.getAction(actionRequest);
-        System.out.println(actionRequest);
+        if (action != null) {
+            action.execute(request, response);
+        } else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/404.jsp");
+            requestDispatcher.forward(request, response);
+        }
 
-        action.execute(request, response);
+
     }
 }
