@@ -73,7 +73,6 @@
                         <h5 class="card-title">${car.modelId}</h5>
                         <p class="card-text">${car.carId}</p>
                         <a href="/cardetails?carid=${car.carId}" class="btn btn-primary"><fmt:message key="label.seeDetails"/></a>
-                        <a href="#" class="btn btn-success"><fmt:message key="label.editCar"/></a>
                         <a href="/deleteCar?carid=${car.carId}" class="btn btn-danger"><fmt:message key="label.deleteCar"/></a>
                     </div>
                 </div>

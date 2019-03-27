@@ -12,9 +12,22 @@ public class DeleteModelAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ModelDAO modelDAO = new ModelDAO();
-        int modelId = Integer.parseInt(request.getParameter("modelToDelete"));
-        modelDAO.delete(modelId);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
-        requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher;
+        if (request.getParameterMap().containsKey("modelToDelete")) {
+            String modelToDelete = request.getParameter("modelToDelete");
+            if (!modelToDelete.isEmpty()) {
+                modelDAO.delete(Integer.parseInt(modelToDelete));
+                requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                request.setAttribute("incorrectData", true);
+                requestDispatcher = request.getRequestDispatcher("/pages/models.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        } else {
+            request.setAttribute("incorrectData", true);
+            requestDispatcher = request.getRequestDispatcher("/pages/models.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 }

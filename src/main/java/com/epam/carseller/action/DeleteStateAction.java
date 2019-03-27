@@ -11,10 +11,23 @@ import java.io.IOException;
 public class DeleteStateAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int stateId = Integer.parseInt(request.getParameter("stateToDelete"));
         StateDAO stateDAO = new StateDAO();
-        stateDAO.delete(stateId);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
-        requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher;
+        if (request.getParameterMap().containsKey("stateToDelete")) {
+            String stateToDelete = request.getParameter("stateToDelete");
+            if (!stateToDelete.isEmpty()) {
+                stateDAO.delete(Integer.parseInt(stateToDelete));
+                requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                request.setAttribute("incorrectData", true);
+                requestDispatcher = request.getRequestDispatcher("/pages/states.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        } else {
+            request.setAttribute("incorrectData", true);
+            requestDispatcher = request.getRequestDispatcher("/pages/states.jsp");
+            requestDispatcher.forward(request, response);
+        }
     }
 }

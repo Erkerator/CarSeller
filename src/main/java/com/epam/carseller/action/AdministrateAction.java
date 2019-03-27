@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 
 public class AdministrateAction implements Action {
@@ -20,7 +19,7 @@ public class AdministrateAction implements Action {
             requestDispatcher.forward(request, response);
         } else {
             String role = (String) session.getAttribute("role");
-            if (!role.equals("Admin") || role.equals(null)){
+            if (!role.equals("Admin")){
                 requestDispatcher = request.getRequestDispatcher("/pages/login.jsp");
                 requestDispatcher.forward(request, response);
             } else {

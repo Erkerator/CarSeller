@@ -11,10 +11,26 @@ import java.io.IOException;
 public class DeleteTransmissionAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int transmissionId = Integer.parseInt(request.getParameter("transmissionToDelete"));
         TransmissionDAO transmissionDAO = new TransmissionDAO();
-        transmissionDAO.delete(transmissionId);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
-        requestDispatcher.forward(request, response);
+        RequestDispatcher requestDispatcher;
+        if (request.getParameterMap().containsKey("transmissionToDelete")) {
+            String transmissionToDelete = request.getParameter("transmissionToDelete");
+            if (!transmissionToDelete.isEmpty()) {
+                transmissionDAO.delete(Integer.parseInt(transmissionToDelete));
+                requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                request.setAttribute("incorrectData", true);
+                requestDispatcher = request.getRequestDispatcher("/pages/transmissions.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        } else {
+            request.setAttribute("incorrectData", true);
+            requestDispatcher = request.getRequestDispatcher("/pages/transmissions.jsp");
+            requestDispatcher.forward(request, response);
+        }
+
+
+
     }
 }

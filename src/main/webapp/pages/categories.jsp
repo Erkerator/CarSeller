@@ -65,9 +65,14 @@
     </nav>
 
     <h1 class="text-center"><fmt:message key="label.correctCategory"/> </h1>
-
+    <c:choose>
+        <c:when test="${incorrectData == true}">
+            <p class="text-center" style="color: red"><fmt:message key="label.incorrectFields"/></p>
+        </c:when>
+    </c:choose>
     <form method="get" action="/admin/addCategory">
         <h4 class="text-center"><fmt:message key="label.addCategoryAuto"/></h4>
+
         <div class="row justify-content-center">
             <div class="col-6">
                 <div class="form-group">

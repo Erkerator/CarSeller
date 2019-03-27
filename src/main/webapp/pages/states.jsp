@@ -58,7 +58,11 @@
 </nav>
 
 <h1 class="text-center"><fmt:message key="label.correctState"/></h1>
-
+<c:choose>
+    <c:when test="${incorrectData == true}">
+        <p class="text-center" style="color: red"><fmt:message key="label.incorrectFields"/></p>
+    </c:when>
+</c:choose>
 <form method="get" action="/admin/addState">
     <h4 class="text-center"><fmt:message key="label.addStateAuto"/></h4>
     <div class="row justify-content-center">
