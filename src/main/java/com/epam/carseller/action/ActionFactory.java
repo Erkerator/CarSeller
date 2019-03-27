@@ -32,6 +32,10 @@ public class ActionFactory {
         ACTION_MAP.put(MODELS_ADMIN_PAGE, new ShowModelsAction());
         ACTION_MAP.put(TRANSMISSIONS_ADMIN_PAGE, new ShowTransmissionsAction());
         ACTION_MAP.put(STATE_ADMIN_PAGE, new ShowStatesAction());
+        ACTION_MAP.put(BRAND_ADMIN_PAGE, new ShowBrandsAction());
+        ACTION_MAP.put(ADD_BRAND, new AddBrandAction());
+        ACTION_MAP.put(CORRECT_BRAND, new CorrectBrandAction());
+        ACTION_MAP.put(DELETE_BRAND, new DeleteBrandAction());
         ACTION_MAP.put(ADD_CATEGORY, new AddCategoryAction());
         ACTION_MAP.put(CORRECT_CATEGORY, new CorrectCategoryAction());
         ACTION_MAP.put(DELETE_CATEGORY, new DeleteCategoryAction());

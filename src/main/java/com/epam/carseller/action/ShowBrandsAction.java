@@ -1,5 +1,8 @@
 package com.epam.carseller.action;
 
+import com.epam.carseller.database.BrandDAO;
+import com.epam.carseller.entity.Brand;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,25 +11,21 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-
-public class AdministrateAction implements Action {
-
+public class ShowBrandsAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String role = (String) session.getAttribute("role");
         RequestDispatcher requestDispatcher;
-        if (session.getAttribute("role") == null) {
+        if (!role.equals("Admin")) {
             requestDispatcher = request.getRequestDispatcher("/pages/login.jsp");
             requestDispatcher.forward(request, response);
         } else {
-            String role = (String) session.getAttribute("role");
-            if (!role.equals("Admin") || role.equals(null)){
-                requestDispatcher = request.getRequestDispatcher("/pages/login.jsp");
-                requestDispatcher.forward(request, response);
-            } else {
-                requestDispatcher = request.getRequestDispatcher("/pages/admin.jsp");
-                requestDispatcher.forward(request, response);
-            }
+            BrandDAO brandDAO = new BrandDAO();
+            List<Brand> listOfBrands = brandDAO.getAll();
+            request.setAttribute("brands", listOfBrands);
+            requestDispatcher = request.getRequestDispatcher("/pages/brands.jsp");
+            requestDispatcher.forward(request, response);
         }
     }
 }

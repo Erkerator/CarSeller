@@ -70,6 +70,9 @@
             <a href="/admin/categories" class="btn btn-info btn-block" role="button"><fmt:message key="label.correctCategory"/></a>
         </div>
         <div class="row" style="margin-top: 10px">
+            <a href="/admin/brands" class="btn btn-info btn-block" role="button"><fmt:message key="label.correctBrand"/></a>
+        </div>
+        <div class="row" style="margin-top: 10px">
             <a href="/admin/models" class="btn btn-info btn-block" role="button"><fmt:message key="label.correctModel"/></a>
         </div>
         <div class="row" style="margin-top: 10px">

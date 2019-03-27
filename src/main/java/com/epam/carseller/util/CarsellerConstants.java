@@ -19,9 +19,13 @@ public final class CarsellerConstants {
     public static final String MODELS_ADMIN_PAGE = "/admin/models";
     public static final String TRANSMISSIONS_ADMIN_PAGE = "/admin/transmissions";
     public static final String STATE_ADMIN_PAGE = "/admin/states";
+    public static final String BRAND_ADMIN_PAGE = "/admin/brands";
     public static final String ADD_CATEGORY = "/admin/addCategory";
     public static final String CORRECT_CATEGORY = "/admin/correctCategory";
     public static final String DELETE_CATEGORY = "/admin/deleteCategory";
+    public static final String ADD_BRAND = "/admin/addBrand";
+    public static final String CORRECT_BRAND = "/admin/correctBrand";
+    public static final String DELETE_BRAND = "/admin/deleteBrand";
     public static final String ADD_MODEL = "/admin/addModel";
     public static final String CORRECT_MODEL = "/admin/correctModel";
     public static final String DELETE_MODEL = "/admin/deleteModel";
