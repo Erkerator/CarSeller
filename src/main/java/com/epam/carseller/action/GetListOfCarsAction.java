@@ -22,7 +22,6 @@ public class GetListOfCarsAction implements Action {
         String transmissionParameter = request.getParameter("Transmission");
         String stateParameter = request.getParameter("State");
         String language = (String) request.getSession().getAttribute("lang");
-        System.out.println(language);
 
         CarDAO carDAO = new CarDAO();
         LanguagesDAO languagesDAO = new LanguagesDAO();
