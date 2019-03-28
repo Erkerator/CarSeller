@@ -2,6 +2,7 @@ package com.epam.carseller.action;
 
 import com.epam.carseller.database.UserDAO;
 import com.epam.carseller.entity.User;
+import com.epam.carseller.util.Validator;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.RequestDispatcher;
@@ -29,22 +30,37 @@ public class AdminRegistrationAction implements Action {
                 existence = true;
             }
         }
-        if (!username.isEmpty() && !password.isEmpty() && password.equals(passwordRepeat) && !firstName.isEmpty() && !existence) {
-            user.setUsername(username);
-            user.setPassword(DigestUtils.md5Hex(password));
-            user.setFirstName(firstName);
-            user.setSecondName(secondName);
-            user.setRole(DEFAULT_ADMIN_ROLE);
-            userDAO.insert(user);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
-            requestDispatcher.forward(request,response);
+        boolean noSignsInInput = Validator.checkToSigns(username);
+        if (noSignsInInput) {
+            if (!username.isEmpty() && !password.isEmpty() && password.equals(passwordRepeat) && !firstName.isEmpty() && !existence) {
+                user.setUsername(username);
+                user.setPassword(DigestUtils.md5Hex(password));
+                user.setFirstName(firstName);
+                user.setSecondName(secondName);
+                user.setRole(DEFAULT_ADMIN_ROLE);
+                userDAO.insert(user);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/result.jsp");
+                requestDispatcher.forward(request,response);
+            } else {
+                request.setAttribute("incorrectData", true);
+                if (existence) {
+                    request.setAttribute("userExists", true);
+                }
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/adminRegistration.jsp");
+                requestDispatcher.forward(request, response);
+            }
         } else {
-            request.setAttribute("incorrectData", true);
-            if (existence) {
-                request.setAttribute("userExists", true);
+            if (!noSignsInInput) {
+                request.setAttribute("incorrectInputText", true);
             }
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/pages/adminRegistration.jsp");
             requestDispatcher.forward(request, response);
         }
+
+
+
+
+
+
     }
 }

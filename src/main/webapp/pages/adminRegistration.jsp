@@ -77,6 +77,11 @@
                 <p class="text-center" style="color: red"><fmt:message key="label.userExists"/></p>
             </c:when>
         </c:choose>
+        <c:choose>
+            <c:when test="${incorrectInputText == true}">
+                <p class="text-center" style="color: red"><fmt:message key="label.signsNotAllowed"/></p>
+            </c:when>
+        </c:choose>
         <div class="form-group">
             <label><fmt:message key="label.enterUsername"/></label>
             <input type="text" name="username" placeholder="<fmt:message key="label.enterUsername"/>" class="form-control" maxlength="20">
