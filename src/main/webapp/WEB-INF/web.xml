@@ -14,7 +14,7 @@
     </welcome-file-list>
     <servlet>
         <servlet-name>CarsellerController</servlet-name>
-        <servlet-class>com.epam.carseller.controller.CarsellerController</servlet-class>
+        <servlet-class>com.company.carseller.controller.CarsellerController</servlet-class>
         <multipart-config>
             <max-file-size>10485760</max-file-size>
             <max-request-size>20971520</max-request-size>
@@ -39,7 +39,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ImageHandlerServlet</servlet-name>
-        <servlet-class>com.epam.carseller.controller.ImageHandlerController</servlet-class>
+        <servlet-class>com.company.carseller.controller.ImageHandlerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ImageHandlerServlet</servlet-name>
@@ -47,7 +47,7 @@
     </servlet-mapping>
     <filter>
         <filter-name>CharsetFilter</filter-name>
-        <filter-class>com.epam.carseller.filter.CharsetFilter</filter-class>
+        <filter-class>com.company.carseller.filter.CharsetFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CharsetFilter</filter-name>
@@ -55,7 +55,7 @@
     </filter-mapping>
     <filter>
         <filter-name>SessionLocaleFilter</filter-name>
-        <filter-class>com.epam.carseller.filter.SessionLocaleFilter</filter-class>
+        <filter-class>com.company.carseller.filter.SessionLocaleFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>SessionLocaleFilter</filter-name>
