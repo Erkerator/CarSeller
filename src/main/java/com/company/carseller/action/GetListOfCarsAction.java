@@ -3,8 +3,8 @@ package com.company.carseller.action;
 import com.company.carseller.database.*;
 import com.company.carseller.entity.*;
 import com.company.carseller.util.CarsellerConstants;
-import com.epam.carseller.database.*;
-import com.epam.carseller.entity.*;
+import com.company.carseller.database.*;
+import com.company.carseller.entity.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

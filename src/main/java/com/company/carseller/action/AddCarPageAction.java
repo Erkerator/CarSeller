@@ -5,8 +5,8 @@ import com.company.carseller.entity.Category;
 import com.company.carseller.entity.Model;
 import com.company.carseller.entity.State;
 import com.company.carseller.entity.Transmission;
-import com.epam.carseller.database.*;
-import com.epam.carseller.entity.*;
+import com.company.carseller.database.*;
+import com.company.carseller.entity.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

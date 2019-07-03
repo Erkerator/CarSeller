@@ -2,8 +2,8 @@ package com.company.carseller.action;
 
 import com.company.carseller.database.*;
 import com.company.carseller.entity.*;
-import com.epam.carseller.database.*;
-import com.epam.carseller.entity.*;
+import com.company.carseller.database.*;
+import com.company.carseller.entity.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
